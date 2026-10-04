@@ -1,0 +1,247 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Sekretaris Bot - AI Digital Assistant</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@400;600;800&family=Inter:wght@300;400;600&display=swap" rel="stylesheet">
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    colors: {
+                        cyber: {
+                            dark: '#0a0b10',
+                            card: '#121520',
+                            neonCyan: '#00f0ff',
+                            neonPink: '#ff007f',
+                            neonYellow: '#f3e600',
+                            border: '#1f293d'
+                        }
+                    },
+                    fontFamily: {
+                        orbitron: ['Orbitron', 'sans-serif'],
+                        inter: ['Inter', 'sans-serif']
+                    }
+                }
+            }
+        }
+    </script>
+    <style>
+        body { background-color: #0a0b10; color: #e2e8f0; font-family: 'Inter', sans-serif; }
+        .cyber-glow { box-shadow: 0 0 15px rgba(0, 240, 255, 0.2); }
+        .cyber-glow-pink { box-shadow: 0 0 15px rgba(255, 0, 127, 0.2); }
+        .cyber-border { border: 1px solid #1f293d; }
+        .cyber-border:hover { border-color: #00f0ff; transition: all 0.3s ease; }
+    </style>
+</head>
+<body class="min-h-screen flex flex-col justify-between selection:bg-cyber-neonCyan selection:text-black">
+
+    <!-- 1. HERO SECTION -->
+    <header class="relative overflow-hidden border-b border-cyber-border py-16 px-4 text-center">
+        <div class="absolute inset-0 bg-[radial-gradient(ellipse_at_top,_var(--tw-gradient-stops))] from-cyan-900/20 via-cyber-dark to-cyber-dark -z-10"></div>
+        <div class="max-w-4xl mx-auto space-y-6">
+            <div class="inline-flex items-center gap-2 px-4 py-1.5 rounded-full bg-cyber-card cyber-border text-xs font-orbitron text-cyber-neonCyan tracking-wider uppercase cyber-glow">
+                <span class="w-2 h-2 rounded-full bg-green-400 animate-pulse"></span>
+                🟢 Status: Active & Ready 24/7
+            </div>
+            <h1 class="text-4xl md:text-6xl font-extrabold font-orbitron tracking-wide text-white">
+                SEKRETARIS <span class="text-cyber-neonCyan">BOT</span>
+            </h1>
+            <p class="text-lg md:text-xl text-gray-400 max-w-2xl mx-auto font-light">
+                Asisten digital otonom dengan integrasi Google Email, Google Meet, dan pengingat jadwal otomatis setiap pukul 07:00 WIB untuk menuntaskan agenda harian Anda.
+            </p>
+        </div>
+    </header>
+
+    <!-- MAIN CONTENT CONTAINER -->
+    <main class="max-w-6xl mx-auto px-4 py-12 space-y-20 w-full">
+
+        <!-- 2. PROBLEM & SOLUTION CARD -->
+        <section class="space-y-8">
+            <div class="text-center space-y-2">
+                <h2 class="text-2xl md:text-3xl font-bold font-orbitron text-white">TRANSFORMASI OPERASIONAL</h2>
+                <p class="text-gray-400 text-sm">Bagaimana Sekretaris Bot menuntaskan kekacauan manajemen agenda harian Anda.</p>
+            </div>
+            <div class="grid md:grid-cols-2 gap-6">
+                <!-- The Chaos -->
+                <div class="bg-cyber-card p-6 md:p-8 rounded-xl cyber-border cyber-glow-pink">
+                    <div class="flex items-center gap-3 mb-6">
+                        <div class="p-3 bg-pink-500/10 text-cyber-neonPink rounded-lg font-orbitron font-bold">⚠️️</div>
+                        <h3 class="text-xl font-bold font-orbitron text-cyber-neonPink">The Chaos (Tanpa Bot)</h3>
+                    </div>
+                    <ul class="space-y-4 text-gray-300 text-sm">
+                        <li class="flex items-start gap-3">
+                            <span class="text-cyber-neonPink font-bold">✕</span> Lupa hal-hal krusial yang harus dikerjakan setiap harinya.
+                        </li>
+                        <li class="flex items-start gap-3">
+                            <span class="text-cyber-neonPink font-bold">✕</span> Tidak sempat menambahkan jadwal manual yang masuk lewat file atau email.
+                        </li>
+                        <li class="flex items-start gap-3">
+                            <span class="text-cyber-neonPink font-bold">✕</span> Sama sekali tidak ingat rincian agenda kegiatan yang akan dilakukan hari ini.
+                        </li>
+                    </ul>
+                </div>
+
+                <!-- The Solution -->
+                <div class="bg-cyber-card p-6 md:p-8 rounded-xl cyber-border cyber-glow">
+                    <div class="flex items-center gap-3 mb-6">
+                        <div class="p-3 bg-cyan-500/10 text-cyber-neonCyan rounded-lg font-orbitron font-bold">⚡</div>
+                        <h3 class="text-xl font-bold font-orbitron text-cyber-neonCyan">The Solution (Sekretaris Bot)</h3>
+                    </div>
+                    <ul class="space-y-4 text-gray-300 text-sm">
+                        <li class="flex items-start gap-3">
+                            <span class="text-cyber-neonCyan font-bold">✓</span> Ekstraksi jadwal otomatis dari Google Email & link Google Meet.
+                        </li>
+                        <li class="flex items-start gap-3">
+                            <span class="text-cyber-neonCyan font-bold">✓</span> Pengiriman *reminder* kegiatan via email rutin setiap pagi pukul 07:00 WIB.
+                        </li>
+                        <li class="flex items-start gap-3">
+                            <span class="text-cyber-neonCyan font-bold">✓</span> Rekapitulasi harian proaktif agar tidak ada tugas yang terlewat.
+                        </li>
+                    </ul>
+                </div>
+            </div>
+        </section>
+
+        <!-- 3. CORE CAPABILITIES -->
+        <section class="space-y-8">
+            <div class="text-center space-y-2">
+                <h2 class="text-2xl md:text-3xl font-bold font-orbitron text-white">CORE CAPABILITIES</h2>
+                <p class="text-gray-400 text-sm">Tiga fitur utama pilar Karyawan Digital Anda.</p>
+            </div>
+            <div class="grid md:grid-cols-3 gap-6">
+                <div class="bg-cyber-card p-6 rounded-xl cyber-border space-y-4 hover:cyber-glow transition-all">
+                    <div class="text-3xl">📧</div>
+                    <h3 class="text-lg font-bold font-orbitron text-white">Email Sync & Meet</h3>
+                    <p class="text-sm text-gray-400">Sinkronisasi otomatis inbox Google Email dan pembuatan tautan Google Meet tanpa repot input manual.</p>
+                </div>
+                <div class="bg-cyber-card p-6 rounded-xl cyber-border space-y-4 hover:cyber-glow transition-all">
+                    <div class="text-3xl">⏰</div>
+                    <h3 class="text-lg font-bold font-orbitron text-white">07:00 AM Email Reminder</h3>
+                    <p class="text-sm text-gray-400">Mengirimkan ringkasan dan pengingat kegiatan via email secara otomatis setiap pagi pukul 07:00 WIB.</p>
+                </div>
+                <div class="bg-cyber-card p-6 rounded-xl cyber-border space-y-4 hover:cyber-glow transition-all">
+                    <div class="text-3xl">📊</div>
+                    <h3 class="text-lg font-bold font-orbitron text-white">Daily Agenda Recap</h3>
+                    <p class="text-sm text-gray-400">Merangkum seluruh agenda harian agar Anda selalu ingat daftar kegiatan dan tugas penting yang harus diselesaikan.</p>
+                </div>
+            </div>
+        </section>
+
+        <!-- 4. INTERACTIVE SIMULATION -->
+        <section class="space-y-8">
+            <div class="text-center space-y-2">
+                <h2 class="text-2xl md:text-3xl font-bold font-orbitron text-white">INTERACTIVE SIMULATION</h2>
+                <p class="text-gray-400 text-sm">Uji kemampuan Sekretaris Bot secara langsung secara real-time.</p>
+            </div>
+            <div class="max-w-2xl mx-auto bg-cyber-card cyber-border rounded-xl overflow-hidden shadow-2xl">
+                <!-- Chat Header -->
+                <div class="bg-cyber-dark px-6 py-4 border-b border-cyber-border flex items-center justify-between">
+                    <div class="flex items-center gap-3">
+                        <div class="w-3 h-3 rounded-full bg-cyber-neonCyan animate-ping"></div>
+                        <span class="font-orbitron font-bold text-sm text-white">Sekretaris Bot Simulator</span>
+                    </div>
+                    <span class="text-xs text-gray-500 font-mono">v2.3-ai</span>
+                </div>
+                <!-- Chat Window -->
+                <div id="chat-window" class="p-6 h-64 overflow-y-auto space-y-4 text-sm font-light">
+                    <div class="flex items-start gap-3">
+                        <div class="w-8 h-8 rounded bg-cyan-900/50 cyber-border flex items-center justify-center text-cyber-neonCyan font-bold text-xs">AI</div>
+                        <div class="bg-cyber-dark cyber-border p-3 rounded-lg text-gray-300 max-w-[80%]">
+                            Halo! Saya Sekretaris Bot. Pilih skenario di bawah untuk menguji pengingat pagi pukul 07:00 WIB, integrasi Meet, dan rekap email Anda.
+                        </div>
+                    </div>
+                </div>
+                <!-- Typing Indicator -->
+                <div id="typing-indicator" class="px-6 pb-2 hidden">
+                    <div class="flex items-center gap-2 text-xs text-cyber-neonCyan font-mono">
+                        <span>Sekretaris Bot sedang mengirim reminder</span>
+                        <span class="animate-bounce">.</span><span class="animate-bounce delay-100">.</span><span class="animate-bounce delay-200">.</span>
+                    </div>
+                </div>
+                <!-- Chat Controls -->
+                <div class="bg-cyber-dark p-4 border-t border-cyber-border grid grid-cols-1 sm:grid-cols-3 gap-2">
+                    <button onclick="runSimulation('pagi')" class="px-3 py-2 bg-cyber-card cyber-border hover:bg-cyan-950/40 text-cyber-neonCyan text-xs rounded font-orbitron transition">
+                        🌅 Simulasi Email 07:00
+                    </button>
+                    <button onclick="runSimulation('meet')" class="px-3 py-2 bg-cyber-card cyber-border hover:bg-cyan-950/40 text-cyber-neonCyan text-xs rounded font-orbitron transition">
+                        📹 Buat Jadwal & Meet
+                    </button>
+                    <button onclick="runSimulation('rangkum')" class="px-3 py-2 bg-cyber-card cyber-border hover:bg-cyan-950/40 text-cyber-neonCyan text-xs rounded font-orbitron transition">
+                        📊 Rangkum Hari Ini
+                    </button>
+                </div>
+            </div>
+        </section>
+
+    </main>
+
+    <!-- 5. FOOTER & CTA -->
+    <footer class="border-t border-cyber-border py-12 px-4 text-center space-y-6 bg-cyber-dark">
+        <div class="max-w-xl mx-auto space-y-4">
+            <h3 class="text-xl font-bold font-orbitron text-white">TERHUBUNG DENGAN SEKRETARIS BOT</h3>
+            <p class="text-sm text-gray-400">Amankan produktivitas dan jadwal harian Anda sekarang bersama asisten AI otonom.</p>
+            <div>
+                <a href="https://wa.me/62811213681" target="_blank" class="inline-block px-8 py-3 rounded-lg bg-cyber-neonCyan text-black font-orbitron font-bold text-sm cyber-glow hover:bg-cyan-400 transition-all">
+                    HUBUNGI / AKSES AGEN (WHATSAPP)
+                </a>
+            </div>
+        </div>
+        <div class="text-xs text-gray-600 font-mono pt-6 border-t border-cyber-border/50">
+            Built with AI · AI Builder Bootcamp Showcase
+        </div>
+    </footer>
+
+    <!-- SIMULATION SCRIPT -->
+    <script>
+        const responses = {
+            pagi: {
+                user: "Simulasikan pengiriman reminder email kegiatan hari ini.",
+                bot: "Berhasil mengirimkan Email Reminder (07:00 WIB) ke inbox Anda: 'Selamat pagi! Hari ini Anda memiliki 3 agenda utama: Briefing Tim (09:00), Review Proyek via Meet (13:00), dan Laporan Klien (16:00).'"
+            },
+            meet: {
+                user: "Tolong jadwalkan meeting via email dan buatkan link Google Meet-nya.",
+                bot: "Berhasil! Email klien diproses dan jadwal dicatat. Tautan Google Meet: meet.google.com/abc-xyz-def telah otomatis dibuat!"
+            },
+            rangkum: {
+                user: "Tampilkan rangkuman agenda kegiatan saya hari ini agar saya ingat semuanya.",
+                bot: "Rangkuman Hari Ini: 09:00 Briefing Tim, 13:00 Review Proyek (via Google Meet), 16:00 Meeting Eksekutif. Semua agenda sudah tersusun rapi!"
+            }
+        };
+
+        function runSimulation(type) {
+            const chatWindow = document.getElementById('chat-window');
+            const typingIndicator = document.getElementById('typing-indicator');
+            const data = responses[type];
+
+            // Append User Message
+            const userMsg = document.createElement('div');
+            userMsg.className = 'flex items-start justify-end gap-3';
+            userMsg.innerHTML = `
+                <div class="bg-cyan-950/60 cyber-border p-3 rounded-lg text-gray-200 max-w-[80%]">${data.user}</div>
+                <div class="w-8 h-8 rounded bg-gray-800 cyber-border flex items-center justify-center text-gray-400 font-bold text-xs">YOU</div>
+            `;
+            chatWindow.appendChild(userMsg);
+            chatWindow.scrollTop = chatWindow.scrollHeight;
+
+            // Show Typing Indicator
+            typingIndicator.classList.remove('hidden');
+
+            // Simulate Bot Response Delay
+            setTimeout(() => {
+                typingIndicator.classList.add('hidden');
+                const botMsg = document.createElement('div');
+                botMsg.className = 'flex items-start gap-3';
+                botMsg.innerHTML = `
+                    <div class="w-8 h-8 rounded bg-cyan-900/50 cyber-border flex items-center justify-center text-cyber-neonCyan font-bold text-xs">AI</div>
+                    <div class="bg-cyber-dark cyber-border p-3 rounded-lg text-gray-300 max-w-[80%]">${data.bot}</div>
+                `;
+                chatWindow.appendChild(botMsg);
+                chatWindow.scrollTop = chatWindow.scrollHeight;
+            }, 1000);
+        }
+    </script>
+</body>
+</html>
