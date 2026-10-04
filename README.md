@@ -1,2 +1,2 @@
-# vibe_coding_2
+# vibe_coding_1
 Testing koneksi github dengan vercel
