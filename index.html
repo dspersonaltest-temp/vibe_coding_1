@@ -34,10 +34,16 @@
         .cyber-glow-pink { box-shadow: 0 0 15px rgba(255, 0, 127, 0.2); }
         .cyber-border { border: 1px solid #1f293d; }
         .cyber-border:hover { border-color: #00f0ff; transition: all 0.3s ease; }
+        /* Table Custom Cyberpunk Styling */
+        #places { width: 100%; border-collapse: collapse; text-align: left; }
+        #places th, #places td { padding: 12px 16px; border-bottom: 1px solid #1f293d; font-size: 0.875rem; }
+        #places th { font-family: 'Orbitron', sans-serif; color: #00f0ff; background-color: #0a0b10; }
+        #places tbody tr:hover { background-color: rgba(0, 240, 255, 0.05); }
+        #places a { color: #00f0ff; text-decoration: underline; }
     </style>
 </head>
 <body class="min-h-screen flex flex-col justify-between selection:bg-cyber-neonCyan selection:text-black">
-
+    
     <!-- 1. HERO SECTION -->
     <header class="relative overflow-hidden border-b border-cyber-border py-16 px-4 text-center">
         <div class="absolute inset-0 bg-[radial-gradient(ellipse_at_top,_var(--tw-gradient-stops))] from-cyan-900/20 via-cyber-dark to-cyber-dark -z-10"></div>
@@ -68,7 +74,7 @@
                 <!-- The Chaos -->
                 <div class="bg-cyber-card p-6 md:p-8 rounded-xl cyber-border cyber-glow-pink">
                     <div class="flex items-center gap-3 mb-6">
-                        <div class="p-3 bg-pink-500/10 text-cyber-neonPink rounded-lg font-orbitron font-bold">⚠️️</div>
+                        <div class="p-3 bg-pink-500/10 text-cyber-neonPink rounded-lg font-orbitron font-bold">⚠️</div>
                         <h3 class="text-xl font-bold font-orbitron text-cyber-neonPink">The Chaos (Tanpa Bot)</h3>
                     </div>
                     <ul class="space-y-4 text-gray-300 text-sm">
@@ -127,6 +133,32 @@
                     <h3 class="text-lg font-bold font-orbitron text-white">Daily Agenda Recap</h3>
                     <p class="text-sm text-gray-400">Merangkum seluruh agenda harian agar Anda selalu ingat daftar kegiatan dan tugas penting yang harus diselesaikan.</p>
                 </div>
+            </div>
+        </section>
+
+        <!-- SUPABASE DATA TABLE SECTION -->
+        <section class="space-y-6">
+            <div class="text-center space-y-2">
+                <h2 class="text-2xl md:text-3xl font-bold font-orbitron text-white">DATABASE PLACES (SUPABASE)</h2>
+                <p class="text-gray-400 text-sm">Daftar lokasi dan data real-time yang terhubung dari database eksternal.</p>
+            </div>
+            <div class="bg-cyber-card cyber-border rounded-xl overflow-x-auto shadow-2xl p-4">
+                <table id="places">
+                    <thead>
+                        <tr>
+                            <th>Nama</th>
+                            <th>Kategori</th>
+                            <th>Rating</th>
+                            <th>Review</th>
+                            <th>Kota</th>
+                            <th>Telepon</th>
+                            <th>Maps</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr><td colspan="7" class="text-center py-4 text-gray-400">Memuat data...</td></tr>
+                    </tbody>
+                </table>
             </div>
         </section>
 
@@ -194,8 +226,53 @@
         </div>
     </footer>
 
-    <!-- SIMULATION SCRIPT -->
+    <!-- COMBINED SCRIPTS (SIMULATION & SUPABASE LOADER) -->
     <script>
+        // Supabase Integration Script
+        const SUPABASE_URL = 'https://jnfnpevehrryhsklxgbq.supabase.co';
+        const SUPABASE_KEY = 'sb_publishable_UP0AF6OCQqIfw2H1vL5bSw_UuV9EZvB';
+
+        async function loadPlaces() {
+            const tbody = document.querySelector('#places tbody');
+            try {
+                const res = await fetch(
+                    SUPABASE_URL + '/rest/v1/places?select=*&order=reviews_count.desc.nullslast&limit=100',
+                    { headers: { apikey: SUPABASE_KEY } }
+                );
+                if (!res.ok) throw new Error('HTTP ' + res.status);
+                const rows = await res.json();
+
+                tbody.replaceChildren();
+                for (const p of rows) {
+                    const tr = document.createElement('tr');
+                    for (const v of [p.title, p.category_name, p.total_score, p.reviews_count, p.city, p.phone]) {
+                        const td = document.createElement('td');
+                        td.textContent = v ?? '-';
+                        tr.appendChild(td);
+                    }
+                    const td = document.createElement('td');
+                    if (p.url && p.url.startsWith('https://')) {
+                        const a = document.createElement('a');
+                        a.href = p.url;
+                        a.target = '_blank';
+                        a.rel = 'noopener';
+                        a.textContent = 'Buka';
+                        td.appendChild(a);
+                    } else {
+                        td.textContent = '-';
+                    }
+                    tr.appendChild(td);
+                    tbody.appendChild(tr);
+                }
+                if (!rows.length) tbody.innerHTML = '<tr><td colspan="7" class="text-center py-4 text-gray-400">Belum ada data.</td></tr>';
+            } catch (e) {
+                tbody.innerHTML = '<tr><td colspan="7" class="text-center py-4 text-red-400">Gagal memuat data.</td></tr>';
+                console.error(e);
+            }
+        }
+        loadPlaces();
+
+        // Chat Simulation Script
         const responses = {
             pagi: {
                 user: "Simulasikan pengiriman reminder email kegiatan hari ini.",
